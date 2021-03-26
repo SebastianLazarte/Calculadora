@@ -2,10 +2,47 @@
 
 using namespace std;
 
-int calculadora(){
+float suma(float numero1,float numero2){
+  return numero1+numero2;
+}
 
- int op;
-    int a, b, r;
+float resta(float numero1,float numero2){
+  return numero1-numero2;
+}
+
+float multiplicacion(float numero1,float numero2){
+  return numero1*numero2;
+}
+
+float division(float numero1, float numero2){
+  float respuesta;
+  if ( numero2 != 0 ){
+    respuesta = numero1 / numero2;
+  }
+  else {
+    cout << "\nError No se puede dividir entre 0 \n" ;
+  }
+  return respuesta;
+}
+
+float pedirNumero1(){
+  float numero1;
+  cout<<"INGRESE EL PRIMER NUMERO"<<endl;
+  cin>>numero1;
+  return numero1;
+}
+
+float pedirNumero2(){
+  float numero2;
+  cout<<"INGRESE EL SEGUNDO NUMERO"<<endl;
+  cin>>numero2;
+  return numero2;
+}
+
+void calculadoraConMenu(){
+ int opcion;
+ float respuesta,numero1,numero2;
+
     do {
         cout << "\nCALCULADORA\n" << endl;
         cout << "1. Sumar" << endl;
@@ -16,65 +53,39 @@ int calculadora(){
 
         do {
             cout << "\nQue desea realizar: ";
-            cin >> op;
-        } while ( op < 1 || op > 5 );
-
-        switch ( op ) {
+            cin >> opcion;
+        } while ( opcion < 1 || opcion > 5 );
+        
+        if( opcion != 5){
+            numero1 = pedirNumero1();
+            numero2 = pedirNumero2();
+        }
+        
+        switch ( opcion ) {
             case 1:
-              cout << "\n Introduzca el 1er valor: " ;
-              cin >> a;
-              cout << "\n Introduzca el 2do valor: " ;
-              cin >> b;
-              r = a + b ;
-
-              cout <<"\n   " << a << " + " << b <<" = "<< r<<"\n";
-              system("pause");
-              system("cls");
+                respuesta = suma(numero1,numero2);
+                cout<<"LA SUMA ES: "<<respuesta<<endl;
               break;
 
             case 2:
-              cout << "\n Introduzca el 1er valor: " ;
-              cin >> a;
-              cout << "\n Introduzca el 2do valor: " ;
-              cin >> b;
-              r = a - b;
-              cout <<"\n   " << a << " - " << b <<" = "<< r<<"\n";
-              system("pause");
-              system("cls");
+                respuesta = resta(numero1,numero2);
+                cout<<"LA RESTA ES: "<<respuesta<<endl;
               break;
 
             case 3:
-              cout << "\n Introduzca el 1er valor: " ;
-              cin >> a;
-              cout << "\n Introduzca el 2do valor: " ;
-              cin >> b;
-              r = a * b;
-              cout <<"\n   " << a << " * " << b <<" = "<< r<<"\n";
-              system("pause");
-              system("cls");
+                respuesta = multiplicacion(numero1,numero2);
+                cout<<"LA MULTIPLICACION ES: "<<respuesta<<endl;
               break;
 
             case 4:
-              cout << "\n Introduzca el 1er valor: " ;
-              cin >> a;
-              cout << "\n Introduzca el 2do valor: " ;
-              cin >> b;
-              if ( b != 0 ){
-                r = a / b;
-                cout <<"\n" << a << " / " << b <<" = "<< r<<"\n";
-                system("pause");
-                system("cls");
-              }
-              else {
-                cout << "\n   Error \n" ;
-                system("pause");
-                system("cls");
-              }
+                respuesta = division(numero1,numero2);
+                cout<<"LA DIVISION ES: "<<respuesta<<endl;
+              break;
         }
-    } while ( op != '5' );}
+    } while ( opcion != 5 );}
 
 int main()
 {
-    calculadora();
+    calculadoraConMenu();
     return 0;
 }
